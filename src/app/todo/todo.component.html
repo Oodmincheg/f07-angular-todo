@@ -1,0 +1,25 @@
+<label for="todo">New todo: </label>
+<input
+  type="text"
+  name="todo"
+  [placeholder]="placeholder"
+  [(ngModel)]="inputValue"
+/>
+<label for="date-input">Final date:</label>
+<input
+  type="date"
+  name="date-input"
+  placeholder="Enter final date..."
+  [(ngModel)]="dateInputValue"
+/>
+<button (click)="onSubmit()">Add todo</button>
+<h3 [class]="titleClass" *ngIf="todos.length; else todosLengthElseBlock">
+  Todo list:
+</h3>
+<ng-template #todosLengthElseBlock><h3>Todo list is empty</h3></ng-template>
+<ul>
+  <li *ngFor="let todo of todos" class="todo">
+    {{ todo.title }}
+    <div class="todo-date">{{ todo.data }}</div>
+  </li>
+</ul>

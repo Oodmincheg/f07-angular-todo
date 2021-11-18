@@ -1,0 +1,19 @@
+label {
+  font-size: 16px;
+  font-family: Courier New;
+}
+.blue {
+  color: blue;
+}
+
+.red {
+  color: red;
+}
+
+.todo {
+  margin-bottom: 20px;
+}
+
+.todo-date {
+  font-size: 12px;
+}
