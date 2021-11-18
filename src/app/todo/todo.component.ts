@@ -8,16 +8,21 @@ import { Component, OnInit } from '@angular/core';
 export class TodoComponent implements OnInit {
   titleClass = 'red';
   placeholder = 'Enter your todo...';
-  inputValue = '';
-  dateInputValue = '';
+  currentTodo = {
+    title: '',
+    percentDone: 0,
+    date: new Date(Date.now()).toLocaleString(),
+    highPriority: false,
+  };
   todos: any = [];
 
-  onSubmit() {
-    this.todos.push({
-      title: this.inputValue,
-      data: this.dateInputValue,
-      id: Symbol(),
-    });
+  saveTodo() {
+    if (this.currentTodo !== null) {
+      this.todos.push({
+        ...this.currentTodo,
+        id: Symbol(),
+      });
+    }
   }
 
   constructor() {}

@@ -1,18 +1,46 @@
-<label for="todo">New todo: </label>
-<input
-  type="text"
-  name="todo"
-  [placeholder]="placeholder"
-  [(ngModel)]="inputValue"
-/>
-<label for="date-input">Final date:</label>
-<input
-  type="date"
-  name="date-input"
-  placeholder="Enter final date..."
-  [(ngModel)]="dateInputValue"
-/>
-<button (click)="onSubmit()">Add todo</button>
+<form #form="ngForm" (submit)="saveTodo()">
+  <div>
+    <label for="todo">New todo: </label>
+    <input
+      required
+      minlength="3"
+      type="text"
+      name="title"
+      [placeholder]="placeholder"
+      [(ngModel)]="currentTodo.title"
+      #title="ngModel"
+    />
+  </div>
+  <div *ngIf="title.errors?.['minlength']">Min length is 3 chars</div>
+  <div>
+    <label for="date-input">Final date:</label>
+    <input
+      type="date"
+      name="date-input"
+      placeholder="Enter final date..."
+      [(ngModel)]="currentTodo.date"
+    />
+  </div>
+  <div>
+    <label for="percentDone">% to finish </label>
+    <input
+      type="range"
+      min="1"
+      max="100"
+      [(ngModel)]="currentTodo.percentDone"
+      name="percentDone"
+    />
+  </div>
+  <div>
+    <label for="highPriority">High Priority</label>
+    <input
+      type="checkbox"
+      [(ngModel)]="currentTodo.highPriority"
+      name="highPriority"
+    />
+  </div>
+  <button [disabled]="!form.valid">Add todo</button>
+</form>
 <h3 [class]="titleClass" *ngIf="todos.length; else todosLengthElseBlock">
   Todo list:
 </h3>
@@ -20,6 +48,6 @@
 <ul>
   <li *ngFor="let todo of todos" class="todo">
     {{ todo.title }}
-    <div class="todo-date">{{ todo.data }}</div>
+    <div class="todo-date">{{ todo.date }}</div>
   </li>
 </ul>
