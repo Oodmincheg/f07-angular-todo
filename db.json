@@ -2,10 +2,28 @@
   "todos": [
     {
       "id": 1,
-      "title": "Angular 9 Fundamentals",
-      "description": "Learn the fundamentals of Angular 9",
-      "percentComplete": 26,
-      "favorite": true
+      "title": "Learn react",
+      "date": "2022-01-01",
+      "percentDone": 78,
+      "highPriority": true
+    },
+    {
+      "id": 2,
+      "title": "Learn angular",
+      "date": "2023-02-01",
+      "percentDone": 10,
+      "highPriority": false
+    },
+    {
+      "title": "learn React 17.02",
+      "id": 3
+    },
+    {
+      "title": "hello kjkj",
+      "percentDone": 0,
+      "date": "18/11/2021, 22:02:01",
+      "highPriority": false,
+      "id": 4
     }
   ]
 }
