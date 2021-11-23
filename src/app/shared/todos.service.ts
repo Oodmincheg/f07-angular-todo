@@ -13,21 +13,16 @@ export class TodosService {
   }
 
   create(todo: any) {
-    // this.todos.push({ ...todo, id: Symbol() });
     return this.http.post(`${BASE_URL}todos`, todo);
   }
 
-  delete() {}
-
-  update(todoToUpdate: any) {
-    // let updatedTodo = this.todos.find(
-    //   (todo: any) => todo.id === todoToUpdate.id,
-    // );
-    // updatedTodo = todoToUpdate;
-    // this.todos = this.todos.map((todo) => {
-    //   if (todo.id !== todoToUpdate.id) return todo;
-    //   else return todoToUpdate;
-    // });
+  delete(todoId: number) {
+    return this.http.delete(`${BASE_URL}todos/${todoId}`);
   }
+
+  update(todo: any) {
+    return this.http.put(`${BASE_URL}todos/${todo.id}`, todo);
+  }
+
   constructor(private http: HttpClient) {}
 }

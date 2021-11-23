@@ -32,15 +32,22 @@ export class TodoComponent implements OnInit {
     if (!this.currentTodo.id) {
       this.todosService
         .create(this.currentTodo)
-        .subscribe(() =>
-          this.todosService
-            .all()
-            .subscribe((todos: any) => (this.todos = todos)),
-        );
+        .subscribe(() => this.loadTodos());
     } else {
-      this.todosService.update(this.currentTodo);
+      this.todosService
+        .update(this.currentTodo)
+        .subscribe(() => this.loadTodos());
     }
     this.resetCurrentTodo();
+  }
+
+  loadTodos() {
+    this.todosService.all().subscribe((todos: any) => (this.todos = todos));
+  }
+
+  deleteTodo(todoId: number, e: any) {
+    console.log(e);
+    this.todosService.delete(todoId).subscribe(() => this.loadTodos());
   }
 
   selectTodo(todo: any) {

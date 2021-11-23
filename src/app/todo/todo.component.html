@@ -54,5 +54,8 @@
     <div class="todo-date">{{ todo.date }}</div>
     <div>Percent done: {{ todo.percentDone }}</div>
     <div *ngIf="todo.highPriority">High priority</div>
+    <button (click)="deleteTodo(todo.id, $event); $event.stopPropagation()">
+      x
+    </button>
   </li>
 </ul>
