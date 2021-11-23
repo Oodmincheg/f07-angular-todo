@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodosService } from '../shared/todos.service';
+import { Todo } from '../shared/types';
 
 @Component({
   selector: 'app-todo',
@@ -16,16 +17,19 @@ export class TodoComponent implements OnInit {
 
   titleClass = 'red';
   placeholder = 'Enter your todo...';
-  currentTodo: any;
-  todos: any = [];
+  currentTodo: Todo = {};
+  todos: Todo[] = [];
+  a: object = { b: 7, c: 8 };
 
   resetCurrentTodo() {
-    this.currentTodo = {
+    const emptyTodo: Todo = {
       title: '',
       percentDone: 0,
       date: new Date(Date.now()).toLocaleString(),
       highPriority: false,
     };
+
+    this.currentTodo = emptyTodo;
   }
 
   saveTodo() {
@@ -41,16 +45,17 @@ export class TodoComponent implements OnInit {
     this.resetCurrentTodo();
   }
 
-  loadTodos() {
+  loadTodos(): void {
     this.todosService.all().subscribe((todos: any) => (this.todos = todos));
   }
 
-  deleteTodo(todoId: number, e: any) {
+  deleteTodo(todoId: number | undefined, e: any): void {
     console.log(e);
+    if (!todoId) return;
     this.todosService.delete(todoId).subscribe(() => this.loadTodos());
   }
 
-  selectTodo(todo: any) {
+  selectTodo(todo: Todo): void {
     this.currentTodo = { ...todo };
   }
 }
